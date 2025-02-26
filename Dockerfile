@@ -3,6 +3,6 @@ WORKDIR /app
 COPY . .
 RUN cargo build --release
 
-FROM debian:buster-slim
+FROM alpine
 COPY --from=builder /app/target/release/fibbot /usr/local/bin/fibbot
 ENTRYPOINT ["fibbot"]
