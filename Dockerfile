@@ -1,8 +1,10 @@
-FROM rust:latest AS builder
+FROM rust:latest AS build
 WORKDIR /app
 COPY . .
 RUN cargo build --release
 
-FROM debian:buster-slim
-COPY --from=builder /app/target/release/fibbot /usr/local/bin/fibbot
+FROM Ubuntu:latest
+FROM gcr.io/distroless/cc AS runtime
+
+COPY --from=build /app/target/release/fibbot /usr/local/bin/fibbot
 ENTRYPOINT ["fibbot"]
