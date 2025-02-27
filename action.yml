@@ -13,5 +13,5 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-      ${{ inputs.enable_fib }}
-      ${{ inputs.max_threshhold }}
+      - ${{ inputs.enable_fib }}
+      - ${{ inputs.max_threshhold }}
