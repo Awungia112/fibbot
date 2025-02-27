@@ -8,4 +8,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run FibBot
-        uses: ./ # Path to the action 
+      - uses: ./
