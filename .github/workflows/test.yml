@@ -13,4 +13,4 @@ jobs:
         uses: ./
         with:
           enable_fib: true
-          max_threshold: 250
+          max_threshhold: 250
