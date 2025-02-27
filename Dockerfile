@@ -8,4 +8,4 @@ RUN cargo run
 #WORKDIR /app
 #FROM gcr.io/distroless/cc AS runtime
 #COPY --from=builder /app/target/release/fibbot /app/fobbot
-#ENTRYPOINT ["/app/fibbot"]   
+#ENTRYPOINT ["/app/fibbot"]
