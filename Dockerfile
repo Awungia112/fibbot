@@ -3,8 +3,8 @@ WORKDIR /app
 COPY . .
 RUN cargo build --release
 
-FROM alpine
+FROM alpine:latest
 WORKDIR /app
-#FROM gcr.io/distroless/cc AS runtime
+FROM gcr.io/distroless/cc AS runtime
 COPY --from=builder /app/target/release/fibbot /app/fobbot
 ENTRYPOINT ["/app/fibbot"]   
