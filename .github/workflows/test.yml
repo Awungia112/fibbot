@@ -6,8 +6,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        
+      # - name: Checkout
       - name: Run FibBot
+        uses: actions/checkout@v4
       - uses: ./
