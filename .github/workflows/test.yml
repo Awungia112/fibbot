@@ -2,7 +2,9 @@ name: Test FibBot
 on: [pull_request]
 jobs:
   test:
-    runs-on: alpine
+    runs-on: ubuntu-latest
+    container:
+       image: alpine:latest
     steps:
       - uses: actions/checkout@v3
       - name: Run FibBot
