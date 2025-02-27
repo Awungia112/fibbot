@@ -6,7 +6,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout
-      - name: Run FibBot
+      - name: Checkout
         uses: actions/checkout@v4
-      - uses: ./
+      
+      - name: Run FibBot
+        uses: ./
+        with:
+          enable_fib: true
+          max_threshold: 250
