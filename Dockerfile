@@ -20,7 +20,7 @@ WORKDIR /app
 
 # Copy the compiled binary from the builder stage
 #COPY --from=builder /usr/src/fibbot/target/release/fibbot /usr/local/bin/fibbot
-COPY --from=builder /bin
+COPY --from=builder /binary
 
 #RUN ls -l /app/
 RUN echo "Contents of /app/ before ls:" && ls -l /app/
