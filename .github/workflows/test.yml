@@ -14,3 +14,7 @@ jobs:
         with:
           enable_fib: true
           max_threshold: 250
+      - name: Build and test
+        env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: cargo build --release
