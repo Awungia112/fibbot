@@ -7,8 +7,9 @@ COPY . .
 # Install dependencies and build the project
 RUN apt-get update && apt-get install -y build-essential
 
-RUN ls -l /usr/src/fibbot/target/release/
 RUN cargo build --release
+
+RUN ls -l /usr/src/fibbot/target/release/
 
 # Stage 2: Create a distroless image for the final container
 FROM gcr.io/distroless/cc
