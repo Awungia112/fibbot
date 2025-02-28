@@ -1,6 +1,15 @@
-use octocrab::Octocrab;
+pub fn format_fibonacci_values(fibonacci_values: &[(u32, u64)]) -> String {
+    let mut comment = "Fibonacci values from PR content:\n".to_string();
+    for (num, fib) in fibonacci_values {
+        comment.push_str(&format!("Fibonacci({}) = {}\n", num, fib));
+    }
+    comment
+}
 
-async fn post_comment(token: &str, pr_id: u64, comment: &str) {
-    let octocrab = Octocrab::builder().personal_token(token.to_string()).build().unwrap();
-    octocrab.issues("owner", "repo").create_comment(pr_id, comment).await.unwrap();
+pub fn format_fibonacci_sequence(fibonacci_sequence: &[u64]) -> String {
+    let mut comment = "Fibonacci sequence for the first 45 terms:\n".to_string();
+    for (i, num) in fibonacci_sequence.iter().enumerate() {
+        comment.push_str(&format!("Fibonacci({}) = {}\n", i, num));
+    }
+    comment
 }
