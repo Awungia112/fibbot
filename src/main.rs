@@ -25,6 +25,7 @@ async fn main() {
 
     // Initialize Octocrab with the GitHub token
     let octocrab = Octocrab::builder().personal_token(github_token).build().unwrap();
+    
 
     // Get the pull request content
     let pr = octocrab.pulls(repo_owner.clone(), repo_name.clone()).get(pr_number).await.unwrap();
@@ -55,6 +56,7 @@ async fn main() {
 
     // Post the comment on the pull request
     octocrab.issues(repo_owner, repo_name).create_comment(pr_number, format!("{}\n\n{}", comment, sequence_comment)).await.unwrap();
+    
 }
 fn post_to_github(fib_numbers: &[i32]) -> Result<(), reqwest::Error> {
     let token = env::var("GITHUB_TOKEN")

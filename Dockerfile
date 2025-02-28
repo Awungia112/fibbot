@@ -10,8 +10,12 @@ RUN apt-get update && apt-get install -y build-essential
 
 # Stage 2: Create a distroless image for the final container
 FROM gcr.io/distroless/cc
+WORKDIR /app
 
 # Copy the compiled binary from the builder stage
-COPY --from=builder /usr/src/fibbot/target/release/fibbot /usr/local/bin/fibbot
+#COPY --from=builder /usr/src/fibbot/target/release/fibbot /usr/local/bin/fibbot
+COPY --from=builder /usr/src/fibbot/target/release/fibbot /app/
 
-ENTRYPOINT ["/usr/local/bin/fibbot"]
+RUN chmod +x /app/fibbot
+
+ENTRYPOINT ["/app/fibbot"]
