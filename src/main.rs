@@ -55,3 +55,17 @@ async fn main() {
     // Post the comment on the pull request
     octocrab.issues(repo_owner, repo_name).create_comment(pr_number, format!("{}\n\n{}", comment, sequence_comment)).await.unwrap();
 }
+fn post_to_github(fib_numbers: &[i32]) -> Result<(), reqwest::Error> {
+    let token = env::var("GITHUB_TOKEN")
+        .unwrap_or_else(|_| panic!("Missing GITHUB_TOKEN environment variable"));
+
+    let client = Client::new();
+    let pr_url = env::var("GITHUB_API_URL")
+        .expect("Missing GITHUB_API_URL environment variable")
+        + "/repos/"
+        + &env::var("GITHUB_REPOSITORY")
+            .expect("Missing GITHUB_REPOSITORY environment variable")
+        + "/issues/"
+        + &env::var("GITHUB_REF")
+            .expect("Missing GITHUB_REF environment variable")
+        + "/comments";
