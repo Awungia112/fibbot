@@ -5,6 +5,7 @@ on: [pull_request, push]
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -14,7 +15,8 @@ jobs:
         with:
           enable_fib: true
           max_threshold: 250
+
       - name: Build and test
         env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: cargo build --release
