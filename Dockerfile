@@ -6,6 +6,8 @@ COPY . .
 
 # Install dependencies and build the project
 RUN apt-get update && apt-get install -y build-essential
+
+RUN ls -l /usr/src/fibbot/target/release/
 RUN cargo build --release
 
 # Stage 2: Create a distroless image for the final container
@@ -16,6 +18,8 @@ WORKDIR /app
 #COPY --from=builder /usr/src/fibbot/target/release/fibbot /usr/local/bin/fibbot
 COPY --from=builder /usr/src/fibbot/target/release/fibbot /app/
 
-RUN chmod +x /app/fibbot
+RUN ls -l /app/
+
+RUN chmod 755 /app/fibbot
 
 ENTRYPOINT ["/app/fibbot"]
