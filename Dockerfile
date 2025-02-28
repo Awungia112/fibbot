@@ -19,8 +19,10 @@ WORKDIR /app
 #COPY --from=builder /usr/src/fibbot/target/release/fibbot /usr/local/bin/fibbot
 COPY --from=builder /usr/src/fibbot/target/release/fibbot /app/
 
-RUN ls -l /app/
+#RUN ls -l /app/
+RUN echo "Contents of /app/ before ls:" && ls -l /app/
 
+#
 RUN chmod 755 /app/fibbot
 
 ENTRYPOINT ["/app/fibbot"]
