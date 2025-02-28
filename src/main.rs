@@ -1,6 +1,7 @@
 use std::env;
 use octocrab::Octocrab;
 use dotenv::dotenv;
+use reqwest::Client;
 
 mod extract;
 mod nacci;
@@ -69,3 +70,5 @@ fn post_to_github(fib_numbers: &[i32]) -> Result<(), reqwest::Error> {
         + &env::var("GITHUB_REF")
             .expect("Missing GITHUB_REF environment variable")
         + "/comments";
+    Ok(())
+}
