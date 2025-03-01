@@ -7,18 +7,26 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
 
     steps:
     - uses: actions/checkout@v2
 
     - name: Set up Rust
       uses: actions-rs/toolchain@v1
+      # with:
+      #   toolchain: stable
+      #   override: true
+    - name: Run FibBot
+      uses: Awungia112/fibbot@master
       with:
-        toolchain: stable
-        override: true
+          pr_number: ${{ github.event.pull_request.number }}
+          enable_fib: "true"
+          max_threshold: "100"
+          github_token: ${{ secrets.GITHUB_TOKEN }}  
 
-    - name: Build
-      run: cargo build --verbose
-
-    - name: Run tests
-      run: cargo test --verbose
+      
+      
