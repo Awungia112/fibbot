@@ -39,5 +39,8 @@ FibBot is a GitHub Action written in Rust that scans pull request content for nu
 ## N.B
  In your repository make sure your workflow has read and write permissions.
  
- Make sure you Github Personal Access Token is set.
+ Make sure your Github Personal Access Token is set.
+
+ create a second branch and open a pull request.
+ 
  Monitor your logs to be sure that the comment is posted succesfully and the fibonacci calculated.
