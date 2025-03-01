@@ -15,12 +15,17 @@ jobs:
       repository-projects: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v2
 
-      - name: Run FibBot
-        uses: Awungia112/fibbot@master
-        with:
+    - name: Set up Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+        
+    - name: Run FibBot
+      uses: Awungia112/fibbot@master
+      with:
           pr_number: ${{ github.event.pull_request.number }}
           enable_fib: "true"
           max_threshold: "100"
