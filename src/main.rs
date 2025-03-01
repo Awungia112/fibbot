@@ -33,13 +33,14 @@ async fn main() {
 
     // Get the pull request content
     // let pr = octocrab.pulls(repo_owner.clone(), repo_name.clone()).get(pr_number).await.unwrap();
-    // let pr_content = pr.body.as_deref().unwrap_or("");
-    let pr_number: u64 = env::var("PR_NUMBER")
-    .expect("PR_NUMBER not set")
-    .parse::<u64>()
-    .expect("Invalid PR_NUMBER");
+    // // let pr_content = pr.body.as_deref().unwrap_or("");
+    // let pr_number: u64 = env::var("PR_NUMBER")
+    // .expect("PR_NUMBER not set")
+    // .parse::<u64>()
+    // .expect("Invalid PR_NUMBER");
     // Extract numbers from the pull request content
-    let numbers = get_pr(pr_number).await;
+    let numbers = get_pr(2).await;
+    println!("{:?}", numbers);
 
     // Calculate Fibonacci values for the extracted numbers
     let mut fibonacci_values= String::from("the fibonacci are\n");
@@ -48,6 +49,7 @@ async fn main() {
         let fib = fibonacci(number);
         fibonacci_values.push_str(&format!("- Fibonacci({}) = {}\n", number, fib));
     };
+    println!("values: {}", fibonacci_values);
 
     // // Generate the Fibonacci sequence for a specified number of terms
     // let num_terms = 45;
