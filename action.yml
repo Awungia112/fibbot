@@ -12,6 +12,14 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-      - ${{ inputs.enable_fib }}
-      - ${{ inputs.max_threshhold }}
+  steps:
+    - name: Build FibBot
+      run: cargo build --release
+      shell: bash
+
+    - name: Run FibBot
+      run: |
+        export PR_NUMBER="${{ inputs.pr_number }}"
+        export GITHUB_TOKEN="${{ inputs.github_token }}"
+        ./target/release/fibbot "${{ inputs.enable_fib }}" "${{ inputs.max_threshold }}"
+      shell: bash
