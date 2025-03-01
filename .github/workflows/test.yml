@@ -1,24 +1,54 @@
-name: Test FibBot
+# name: Test FibBot
 
-on: 
+# on: 
+#   pull_request:
+#     types: [opened, synchronize]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v2
+
+#     - name: Set up Rust
+#       uses: actions-rs/toolchain@v1
+#       with:
+#         toolchain: stable
+#         override: true
+
+#     - name: Build
+#       run: cargo build --verbose
+
+#     - name: Run tests
+#       run: cargo test --verbose
+
+#       name: "Run FibBot"
+
+on:
   pull_request:
     types: [opened, synchronize]
 
+permissions:
+  pull-requests: write
+  contents: read
+
 jobs:
-  build:
+  run-fibbot:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
 
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Rust
-      uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-        override: true
-
-    - name: Build
-      run: cargo build --verbose
-
-    - name: Run tests
-      run: cargo test --verbose
+      - name: Run FibBot
+        uses: Awungia112/fibbot@master
+        with:
+          pr_number: ${{ github.event.pull_request.number }}
+          enable_fib: "true"
+          max_threshold: "100"
+          github_token: ${{ secrets.GITHUB_TOKEN }}  
