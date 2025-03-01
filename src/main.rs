@@ -34,12 +34,12 @@ async fn main() {
     // Get the pull request content
     // let pr = octocrab.pulls(repo_owner.clone(), repo_name.clone()).get(pr_number).await.unwrap();
     // // let pr_content = pr.body.as_deref().unwrap_or("");
-    // let pr_number: u64 = env::var("PR_NUMBER")
-    // .expect("PR_NUMBER not set")
-    // .parse::<u64>()
-    // .expect("Invalid PR_NUMBER");
+    let pr_number: u64 = env::var("PR_NUMBER")
+    .expect("PR_NUMBER not set")
+    .parse::<u64>()
+    .expect("Invalid PR_NUMBER");
     // Extract numbers from the pull request content
-    let numbers = get_pr(2).await;
+    let numbers = get_pr(pr_number).await;
     println!("{:?}", numbers);
 
     // Calculate Fibonacci values for the extracted numbers
