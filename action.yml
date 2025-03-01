@@ -10,8 +10,8 @@ inputs:
     required: true
     default: '100'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "composite"
+  # image: 'Dockerfile'
   steps:
     - name: Build FibBot
       run: cargo build --release
