@@ -19,7 +19,7 @@ FibBot is a GitHub Action written in Rust that scans pull request content for nu
 
 1. **Clone the Repository**
    ```sh
-   git clone https://github.com/awungia112/fibbot.git
+   git clone https://github.com/Awungia112/fibbot.git
    cd fibbot
 2. **Build Rust Project**
    ```sh
