@@ -7,9 +7,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Rust
+        uses: actions/setup-rust@v
+
+      - name: Build
+        run: cargo build --release
       - name: Run FibBot
         uses: ./
         with:
